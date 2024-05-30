@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Google Chrome T-Rex Sidescroller"
-run/main_scene="res://scenes/background.tscn"
+run/main_scene="res://scenes/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -24,7 +24,7 @@ window/stretch/scale_mode="integer"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
+enabled=PackedStringArray()
 
 [rendering]
 

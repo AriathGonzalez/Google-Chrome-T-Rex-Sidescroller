@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmyq1l1xsckei"]
+
+[ext_resource type="Texture2D" uid="uid://b6rw4ed7ecuue" path="res://assets/sprites/tilemap-characters_packed.png" id="1_lxhx8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wal74"]
+atlas = ExtResource("1_lxhx8")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p752e"]
+atlas = ExtResource("1_lxhx8")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6x0ye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wal74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p752e")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6say"]
+size = Vector2(20, 24)
+
+[node name="Alien" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_6x0ye")
+animation = &"Walk"
+frame_progress = 0.601108
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_u6say")

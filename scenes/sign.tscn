@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjru6j81twsu7"]
+
+[ext_resource type="Texture2D" uid="uid://copv7cqu5teud" path="res://assets/sprites/tilemap.png" id="1_yw7uu"]
+
+[node name="Sign" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -9)
+texture = ExtResource("1_yw7uu")
+region_enabled = true
+region_rect = Rect2(95, 76, 18, 18)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-4, 0, -4, -4, -9, -4, -9, -18, 10, -18, 10, -4, 3, -4, 3, 0)

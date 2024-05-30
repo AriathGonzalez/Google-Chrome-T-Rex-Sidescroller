@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://blhfhlmkjuje3"]
+
+[ext_resource type="Texture2D" uid="uid://copv7cqu5teud" path="res://assets/sprites/tilemap.png" id="1_2ufa6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wpp3"]
+size = Vector2(12, 13)
+
+[node name="Mushroom" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_2ufa6")
+region_enabled = true
+region_rect = Rect2(154, 119, 14, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_5wpp3")

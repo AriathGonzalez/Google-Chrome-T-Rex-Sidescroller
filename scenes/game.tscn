@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbfulykerode4"]
+
+[ext_resource type="PackedScene" uid="uid://dppd25hpkf8mg" path="res://scenes/background.tscn" id="1_ck8gw"]
+[ext_resource type="PackedScene" uid="uid://c7j8fhrgbh6v4" path="res://scenes/ground.tscn" id="2_g0frr"]
+[ext_resource type="PackedScene" uid="uid://cfbvuvb0cpn15" path="res://scenes/dino.tscn" id="3_74l4b"]
+
+[node name="Game" type="Node"]
+
+[node name="Background" parent="." instance=ExtResource("1_ck8gw")]
+
+[node name="Ground" parent="." instance=ExtResource("2_g0frr")]
+
+[node name="Dino" parent="." instance=ExtResource("3_74l4b")]
+position = Vector2(28, 343)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(161, 276)
+zoom = Vector2(2, 2)

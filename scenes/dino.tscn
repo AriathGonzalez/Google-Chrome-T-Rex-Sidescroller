@@ -1,5 +1,6 @@
-[gd_scene load_steps=27 format=3 uid="uid://cfbvuvb0cpn15"]
+[gd_scene load_steps=28 format=3 uid="uid://cfbvuvb0cpn15"]
 
+[ext_resource type="Script" path="res://scripts/dino.gd" id="1_akot3"]
 [ext_resource type="Texture2D" uid="uid://q8hdqad5xvqk" path="res://assets/sprites/DinoSprites - mort.png" id="1_xskhu"]
 [ext_resource type="AudioStream" uid="uid://rj6r848cbrdq" path="res://assets/sounds/458641__matrixxx__retro-jump-02.wav" id="2_qcx83"]
 [ext_resource type="AudioStream" uid="uid://rt5c0nf7fchg" path="res://assets/sounds/344033__reitanna__cute-impact.wav" id="3_f7h75"]
@@ -179,13 +180,15 @@ size = Vector2(8, 17)
 size = Vector2(11, 14)
 
 [node name="Dino" type="CharacterBody2D"]
+z_index = 1
+script = ExtResource("1_akot3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_gdgnu")
 animation = &"Idle"
 autoplay = "Idle"
-frame_progress = 0.0844323
+frame_progress = 0.661544
 
 [node name="MoveCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-2, -9.5)

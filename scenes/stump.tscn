@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cydko5vmx2k35"]
+
+[ext_resource type="Texture2D" uid="uid://0wp3i5jupf6n" path="res://assets/sprites/tilemap_packed.png" id="1_4wbsh"]
+
+[node name="Stump" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.1, -10)
+texture = ExtResource("1_4wbsh")
+region_enabled = true
+region_rect = Rect2(326, 105, 26, 23)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-0.1, -10)
+build_mode = 1
+polygon = PackedVector2Array(-11, 10, -11, -9, -2, -9, -2, -8, 5, -8, 5, -10, 10, -10, 12, 0, 10, 2, 6, 2, 4, -1, 2, -1, 0, 1, 1, 3, 1, 6, 1, 10)

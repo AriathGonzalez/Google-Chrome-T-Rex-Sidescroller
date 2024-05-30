@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://d2eqsnx0bckoh"]
+
+[ext_resource type="Texture2D" uid="uid://b6rw4ed7ecuue" path="res://assets/sprites/tilemap-characters_packed.png" id="1_ppgio"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y1ddw"]
+atlas = ExtResource("1_ppgio")
+region = Rect2(144, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc8yn"]
+atlas = ExtResource("1_ppgio")
+region = Rect2(168, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q55hb"]
+atlas = ExtResource("1_ppgio")
+region = Rect2(192, 48, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n0s41"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y1ddw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc8yn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q55hb")
+}],
+"loop": true,
+"name": &"Flying",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tihbv"]
+radius = 9.0
+
+[node name="Bug" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_n0s41")
+animation = &"Flying"
+autoplay = "Flying"
+frame_progress = 0.850372
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_tihbv")
