@@ -27,7 +27,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_q55hb")
 }],
 "loop": true,
-"name": &"Flying",
+"name": &"fly",
 "speed": 10.0
 }]
 
@@ -39,9 +39,8 @@ radius = 9.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -9)
 sprite_frames = SubResource("SpriteFrames_n0s41")
-animation = &"Flying"
-autoplay = "Flying"
-frame_progress = 0.850372
+animation = &"fly"
+autoplay = "fly"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)

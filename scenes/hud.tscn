@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://gjxon4cvvpyj"]
+
+[ext_resource type="FontFile" uid="uid://4kuqkc3dan1o" path="res://assets/fonts/Retro Gaming.ttf" id="1_h757b"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_right = 125.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_h757b")
+theme_override_font_sizes/font_size = 16
+text = "SCORE: 0"
+
+[node name="HighScoreLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -174.0
+offset_bottom = 23.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_h757b")
+theme_override_font_sizes/font_size = 16
+text = "HIGH SCORE: 0"
+
+[node name="StartLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -76.5
+offset_top = -11.5
+offset_right = 76.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_h757b")
+theme_override_font_sizes/font_size = 24
+text = "PRESS SPACE TO PLAY"

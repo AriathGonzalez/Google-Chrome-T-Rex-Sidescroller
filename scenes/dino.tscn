@@ -98,7 +98,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_jtx72")
 }],
 "loop": true,
-"name": &"Hurt",
+"name": &"hurt",
 "speed": 10.0
 }, {
 "frames": [{
@@ -115,7 +115,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_0i2mh")
 }],
 "loop": true,
-"name": &"Idle",
+"name": &"idle",
 "speed": 10.0
 }, {
 "frames": [{
@@ -123,7 +123,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_0qul2")
 }],
 "loop": true,
-"name": &"Jump",
+"name": &"jump",
 "speed": 10.0
 }, {
 "frames": [{
@@ -146,7 +146,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_6ue3t")
 }],
 "loop": true,
-"name": &"Move",
+"name": &"move",
 "speed": 10.0
 }, {
 "frames": [{
@@ -169,33 +169,34 @@ animations = [{
 "texture": SubResource("AtlasTexture_l2q0l")
 }],
 "loop": true,
-"name": &"Sneak",
+"name": &"sneak",
 "speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o3sc"]
-size = Vector2(8, 17)
+size = Vector2(7, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f85d7"]
-size = Vector2(11, 14)
+size = Vector2(8.5, 10.25)
 
 [node name="Dino" type="CharacterBody2D"]
 z_index = 1
+scale = Vector2(4, 4)
 script = ExtResource("1_akot3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(3, -9)
+scale = Vector2(0.75, 0.75)
 sprite_frames = SubResource("SpriteFrames_gdgnu")
-animation = &"Idle"
-autoplay = "Idle"
-frame_progress = 0.661544
+animation = &"idle"
+autoplay = "idle"
 
 [node name="MoveCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-2, -9.5)
+position = Vector2(1.5, -9)
 shape = SubResource("RectangleShape2D_4o3sc")
 
 [node name="SneakCollision" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -8)
+position = Vector2(2.25, -8.625)
 shape = SubResource("RectangleShape2D_f85d7")
 debug_color = Color(0.734102, 0.393733, 0.673678, 0.42)
 
