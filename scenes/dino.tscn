@@ -174,29 +174,30 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o3sc"]
-size = Vector2(7, 12)
+size = Vector2(8.83333, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f85d7"]
-size = Vector2(8.5, 10.25)
+size = Vector2(11.6667, 13.7917)
 
 [node name="Dino" type="CharacterBody2D"]
 z_index = 1
-scale = Vector2(4, 4)
 script = ExtResource("1_akot3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(3, -9)
-scale = Vector2(0.75, 0.75)
+position = Vector2(4, -25)
+scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_gdgnu")
-animation = &"idle"
+animation = &"hurt"
 autoplay = "idle"
 
 [node name="MoveCollision" type="CollisionShape2D" parent="."]
-position = Vector2(1.5, -9)
+position = Vector2(-2.25, -25)
+scale = Vector2(3.5, 3.5)
 shape = SubResource("RectangleShape2D_4o3sc")
 
 [node name="SneakCollision" type="CollisionShape2D" parent="."]
-position = Vector2(2.25, -8.625)
+position = Vector2(2.5, -21.6875)
+scale = Vector2(3.5, 3.5)
 shape = SubResource("RectangleShape2D_f85d7")
 debug_color = Color(0.734102, 0.393733, 0.673678, 0.42)
 

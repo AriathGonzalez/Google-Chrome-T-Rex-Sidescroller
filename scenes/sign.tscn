@@ -5,10 +5,13 @@
 [node name="Sign" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -23)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_yw7uu")
 region_enabled = true
 region_rect = Rect2(95, 76, 18, 18)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(2.5, 2.5)
 polygon = PackedVector2Array(-4, 0, -4, -4, -9, -4, -9, -18, 10, -18, 10, -4, 3, -4, 3, 0)

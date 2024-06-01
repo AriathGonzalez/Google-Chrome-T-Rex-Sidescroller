@@ -28,6 +28,7 @@ animations = [{
 size = Vector2(20, 24)
 
 [node name="Alien" type="Area2D"]
+scale = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)

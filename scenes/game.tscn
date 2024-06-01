@@ -14,11 +14,11 @@ script = ExtResource("1_t0cu2")
 [node name="Ground" parent="." instance=ExtResource("2_g0frr")]
 
 [node name="Dino" parent="." instance=ExtResource("3_74l4b")]
-position = Vector2(20, 343)
+position = Vector2(20, 350)
 
 [node name="DinoCamera" type="Camera2D" parent="."]
-position = Vector2(213, 243)
-zoom = Vector2(1.5, 1.5)
+position = Vector2(256, 226)
+zoom = Vector2(1.25, 1.25)
 
 [node name="HUD" parent="." instance=ExtResource("5_43883")]
 unique_name_in_owner = true

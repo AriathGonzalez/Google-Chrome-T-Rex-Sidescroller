@@ -5,12 +5,14 @@
 [node name="Stump" type="Area2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.1, -10)
+position = Vector2(3.75, -25)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_4wbsh")
 region_enabled = true
 region_rect = Rect2(326, 105, 26, 23)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(-0.1, -10)
+position = Vector2(3.75, -25)
+scale = Vector2(2.5, 2.5)
 build_mode = 1
 polygon = PackedVector2Array(-11, 10, -11, -9, -2, -9, -2, -8, 5, -8, 5, -10, 10, -10, 12, 0, 10, 2, 6, 2, 4, -1, 2, -1, 0, 1, 1, 3, 1, 6, 1, 10)
