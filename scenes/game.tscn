@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dbfulykerode4"]
+[gd_scene load_steps=7 format=3 uid="uid://dbfulykerode4"]
 
 [ext_resource type="PackedScene" uid="uid://dppd25hpkf8mg" path="res://scenes/background.tscn" id="1_ck8gw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t0cu2"]
 [ext_resource type="PackedScene" uid="uid://c7j8fhrgbh6v4" path="res://scenes/ground.tscn" id="2_g0frr"]
 [ext_resource type="PackedScene" uid="uid://cfbvuvb0cpn15" path="res://scenes/dino.tscn" id="3_74l4b"]
 [ext_resource type="PackedScene" uid="uid://gjxon4cvvpyj" path="res://scenes/hud.tscn" id="5_43883"]
+[ext_resource type="PackedScene" uid="uid://cv0klgkcsencp" path="res://scenes/game_over.tscn" id="6_i1w0d"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_t0cu2")
@@ -22,3 +23,7 @@ zoom = Vector2(1.25, 1.25)
 
 [node name="HUD" parent="." instance=ExtResource("5_43883")]
 unique_name_in_owner = true
+
+[node name="GameOver" parent="." instance=ExtResource("6_i1w0d")]
+process_mode = 2
+visible = false

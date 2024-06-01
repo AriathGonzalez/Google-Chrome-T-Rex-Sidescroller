@@ -26,9 +26,10 @@ var dino_speed
 var screen_size
 var ground_height
 
-var score
+var score = 0
+var high_score = 0
 
-var game_running
+var game_running = false
 
 var last_obstacle
 
@@ -37,7 +38,7 @@ var difficulty = 0
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
-	new_game()
+	$GameOver/Button.pressed.connect(new_game)
 	
 func _process(_delta):
 	if game_running:
@@ -89,7 +90,7 @@ func generate_obstacles():
 			add_obstacle(obstacle, obstacle_x, obstacle_y)
 			
 		# Generate flying obstacles if max difficulty reached
-		if difficulty >= 0:
+		if difficulty == MAX_DIFFICULTY:
 			if (randi() % 2) == 0:
 				obstacle = bug_scene.instantiate()
 				var obstacle_x = screen_size.x + score + 150
@@ -112,20 +113,24 @@ func hit_obstacle(body):
 		
 func show_score():
 	%HUD/ScoreLabel.text = "SCORE: " + str(score / SCORE_MODIFIER)
-	
-func new_game():
-	score = 0
-	$Dino.position = DINO_START_POS
-	$Dino.velocity = Vector2i(0, 0)
-	$DinoCamera.position = DINO_CAM_START_POS
-	$Ground.position = Vector2i(0, 0)
-	%HUD/StartLabel.visible = true
 
+# TODO: Add a game manager to save between reloads
+func check_high_score():
+	if score >= high_score:
+		high_score = score
+		%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(high_score)
+		
+func new_game():
+	get_tree().paused = false
+	get_tree().reload_current_scene()
+	
 func adjust_difficulty():
 	difficulty = score / SPEED_MODIFIER
 	if difficulty >= MAX_DIFFICULTY:
 		difficulty = MAX_DIFFICULTY
 
 func game_over():
+	check_high_score()
 	get_tree().paused = true
 	game_running = false
+	$GameOver.show()

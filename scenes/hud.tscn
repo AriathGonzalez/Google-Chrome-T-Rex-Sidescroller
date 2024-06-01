@@ -9,7 +9,7 @@ offset_right = 125.0
 offset_bottom = 23.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_h757b")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 24
 text = "SCORE: 0"
 
 [node name="HighScoreLabel" type="Label" parent="."]
@@ -21,7 +21,7 @@ offset_bottom = 23.0
 grow_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_h757b")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 24
 text = "HIGH SCORE: 0"
 
 [node name="StartLabel" type="Label" parent="."]
