@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://cfbvuvb0cpn15"]
+[gd_scene load_steps=27 format=3 uid="uid://cfbvuvb0cpn15"]
 
 [ext_resource type="Script" path="res://scripts/dino.gd" id="1_akot3"]
 [ext_resource type="Texture2D" uid="uid://q8hdqad5xvqk" path="res://assets/sprites/DinoSprites - mort.png" id="1_xskhu"]
 [ext_resource type="AudioStream" uid="uid://rj6r848cbrdq" path="res://assets/sounds/458641__matrixxx__retro-jump-02.wav" id="2_qcx83"]
-[ext_resource type="AudioStream" uid="uid://rt5c0nf7fchg" path="res://assets/sounds/344033__reitanna__cute-impact.wav" id="3_f7h75"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4onal"]
 atlas = ExtResource("1_xskhu")
@@ -187,7 +186,7 @@ script = ExtResource("1_akot3")
 position = Vector2(4, -25)
 scale = Vector2(3.5, 3.5)
 sprite_frames = SubResource("SpriteFrames_gdgnu")
-animation = &"hurt"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="MoveCollision" type="CollisionShape2D" parent="."]
@@ -203,8 +202,4 @@ debug_color = Color(0.734102, 0.393733, 0.673678, 0.42)
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_qcx83")
-volume_db = -25.0
-
-[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_f7h75")
-volume_db = -25.0
+bus = &"SFX"
