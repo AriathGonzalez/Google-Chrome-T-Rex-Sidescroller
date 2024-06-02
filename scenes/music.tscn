@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcb68xl8is8fj"]
+[gd_scene load_steps=2 format=3 uid="uid://7lumfiogm2ln"]
 
 [ext_resource type="AudioStream" uid="uid://cq5vmxn1n4y0f" path="res://assets/music/cruising-down-8bit-lane-159615.mp3" id="1_ibrye"]
 
-[node name="Music" type="AudioStreamPlayer2D"]
+[node name="Music" type="AudioStreamPlayer"]
+process_mode = 3
 stream = ExtResource("1_ibrye")
 autoplay = true
 bus = &"Music"

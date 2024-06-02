@@ -35,7 +35,9 @@ func _ready():
 	$GameOver/Button.pressed.connect(new_game)
 	
 func _process(_delta):
+	#print("Volume:", Music.volume_db)
 	if game_running:
+		#print("Volume:", Music.volume_db)
 		update_game()
 	else:
 		if Input.is_action_pressed("ui_accept"):
@@ -48,10 +50,9 @@ func update_game():
 		dino_speed = MAX_SPEED
 	
 	adjust_difficulty()
-	print("difficulty adjusted...")
+
 	# Generate obstacles
 	generate_obstacles()
-	print("generated obstacle...")
 	
 	# Move dino and camera
 	$Dino.position.x += dino_speed
@@ -60,19 +61,17 @@ func update_game():
 	# Update score
 	score += int(dino_speed)
 	show_score()
-	print("showing score...")
 	
 	# Update ground position
 	# Camera has moved on too far and now the ground is about to go off
 	# the side of the screen.
 	if $DinoCamera.position.x - $Ground.position.x > screen_size.x * 1.5:
 		$Ground.position.x += screen_size.x
-	print("adjusted ground...")
+
 	# Clean up obstacles
 	for obstacle in obstacles:
 		if obstacle.position.x < ($DinoCamera.position.x - screen_size.x):
 			remove_obstacle(obstacle)
-	print("clean up...")
 				
 func generate_obstacles():
 	# Generate ground obstacles
@@ -130,8 +129,8 @@ func adjust_difficulty():
 		difficulty = MAX_DIFFICULTY
 
 func game_over():
-	$GameOverSound.play()
 	check_high_score()
 	get_tree().paused = true
+	$GameOverSound.play()
 	game_running = false
 	$GameOver.show()

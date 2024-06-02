@@ -202,4 +202,5 @@ debug_color = Color(0.734102, 0.393733, 0.673678, 0.42)
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_qcx83")
+volume_db = -8.0
 bus = &"SFX"

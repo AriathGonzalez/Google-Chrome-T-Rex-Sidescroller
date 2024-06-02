@@ -29,7 +29,8 @@ unique_name_in_owner = true
 process_mode = 2
 visible = false
 
-[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 process_mode = 2
 stream = ExtResource("7_e8nqt")
+volume_db = 1.874
 bus = &"SFX"
