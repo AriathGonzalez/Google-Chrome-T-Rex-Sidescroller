@@ -3,11 +3,11 @@ extends Node
 # Constants
 const DINO_START_POS := Vector2i(20, 350)
 const DINO_CAM_START_POS := Vector2i(256, 226)
-const START_SPEED : float = 5.0
-const MAX_SPEED : int = 20
+const START_SPEED : float = 150.0
+const MAX_SPEED : int = 425
 const SPEED_MODIFIER : int = 5000
 const SCORE_MODIFIER : int = 10
-const MAX_DIFFICULTY : int = 2
+const MAX_DIFFICULTY : int = 3
 
 # Obstacles
 var alien_scene = preload("res://scenes/alien.tscn")
@@ -23,29 +23,56 @@ var obstacles : Array = []
 var dino_speed : float = START_SPEED
 var screen_size : Vector2i
 var ground_height : int
-var score : int = 0
+var score : float = 0.0
 var game_running : bool = false
 var last_obstacle
 var difficulty : int = 0
 
+# TODO: Make speed rank up better over time. Currently, reach max speed in the first 20 seconds or less.
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
-	%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(GameManager.high_score)
+	%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(int(GameManager.high_score))
 	$GameOver/Button.pressed.connect(new_game)
 	
-func _process(_delta):
-	#print("Volume:", Music.volume_db)
+func _process(delta):
 	if game_running:
-		#print("Volume:", Music.volume_db)
-		update_game()
+		dino_speed = START_SPEED + score 
+		print("dino_speed: ", dino_speed)
+		if dino_speed >= MAX_SPEED:
+			dino_speed = MAX_SPEED
+		
+		adjust_difficulty()
+
+		# Generate obstacles
+		generate_obstacles()
+		
+		# Move dino and camera
+		$Dino.position.x += dino_speed * delta
+		$DinoCamera.position.x += dino_speed * delta
+		
+		# Update score
+		score += dino_speed * delta
+		show_score()
+		
+		# Update ground position
+		# Camera has moved on too far and now the ground is about to go off
+		# the side of the screen.
+		if $DinoCamera.position.x - $Ground.position.x > screen_size.x * 1.5:
+			$Ground.position.x += screen_size.x
+
+		# Clean up obstacles
+		for obstacle in obstacles:
+			if obstacle.position.x < ($DinoCamera.position.x - screen_size.x):
+				remove_obstacle(obstacle)
 	else:
 		if Input.is_action_pressed("ui_accept"):
 			game_running = true
 			%HUD/StartLabel.visible = false
 
-func update_game():
-	dino_speed = int(floor(START_SPEED) + floor(score) / floor(SPEED_MODIFIER))
+func update_game(delta):
+	dino_speed = START_SPEED + score
+	print("dino:speed: ", dino_speed)
 	if dino_speed >= MAX_SPEED:
 		dino_speed = MAX_SPEED
 	
@@ -55,11 +82,11 @@ func update_game():
 	generate_obstacles()
 	
 	# Move dino and camera
-	$Dino.position.x += dino_speed
-	$DinoCamera.position.x += dino_speed
+	$Dino.position.x += dino_speed * delta
+	$DinoCamera.position.x += dino_speed * delta
 	
 	# Update score
-	score += int(dino_speed)
+	score += dino_speed * delta
 	show_score()
 	
 	# Update ground position
@@ -111,20 +138,20 @@ func hit_obstacle(body):
 		game_over()
 		
 func show_score():
-	%HUD/ScoreLabel.text = "SCORE: " + str(int(floor(score) / floor(SCORE_MODIFIER)))
+	%HUD/ScoreLabel.text = "SCORE: " + str(int(score / SCORE_MODIFIER))
 
 func check_high_score():
-	score = int(floor(score) / floor(SCORE_MODIFIER)) 
+	score = score / SCORE_MODIFIER
 	if score >= GameManager.high_score:
 		GameManager.high_score = score
-		%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(GameManager.high_score)
+		%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(int(GameManager.high_score))
 		
 func new_game():
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	
 func adjust_difficulty():
-	difficulty = int(floor(score) / floor(SPEED_MODIFIER))
+	difficulty = int(score / SPEED_MODIFIER)
 	if difficulty >= MAX_DIFFICULTY:
 		difficulty = MAX_DIFFICULTY
 
