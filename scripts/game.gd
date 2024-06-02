@@ -24,7 +24,6 @@ var dino_speed : float = START_SPEED
 var screen_size : Vector2i
 var ground_height : int
 var score : int = 0
-var high_score : int = 0
 var game_running : bool = false
 var last_obstacle
 var difficulty : int = 0
@@ -32,6 +31,7 @@ var difficulty : int = 0
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
+	%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(GameManager.high_score)
 	$GameOver/Button.pressed.connect(new_game)
 	
 func _process(_delta):
@@ -113,11 +113,11 @@ func hit_obstacle(body):
 func show_score():
 	%HUD/ScoreLabel.text = "SCORE: " + str(int(floor(score) / floor(SCORE_MODIFIER)))
 
-# TODO: Add a game manager to save between reloads
 func check_high_score():
-	if score >= high_score:
-		high_score = score
-		%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(high_score)
+	score = int(floor(score) / floor(SCORE_MODIFIER)) 
+	if score >= GameManager.high_score:
+		GameManager.high_score = score
+		%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(GameManager.high_score)
 		
 func new_game():
 	get_tree().paused = false
