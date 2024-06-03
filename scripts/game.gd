@@ -3,8 +3,8 @@ extends Node
 # Constants
 const DINO_START_POS := Vector2i(20, 350)
 const DINO_CAM_START_POS := Vector2i(256, 226)
-const START_SPEED : float = 150.0
-const MAX_SPEED : int = 425
+const START_SPEED : float = 200.0
+const MAX_SPEED : int = 450
 const SPEED_MODIFIER : int = 5000
 const SCORE_MODIFIER : int = 10
 const MAX_DIFFICULTY : int = 3
@@ -28,7 +28,6 @@ var game_running : bool = false
 var last_obstacle
 var difficulty : int = 0
 
-# TODO: Make speed rank up better over time. Currently, reach max speed in the first 20 seconds or less.
 func _ready():
 	screen_size = get_window().size
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
@@ -37,8 +36,7 @@ func _ready():
 	
 func _process(delta):
 	if game_running:
-		dino_speed = START_SPEED + score 
-		print("dino_speed: ", dino_speed)
+		dino_speed = START_SPEED + (score * delta)
 		if dino_speed >= MAX_SPEED:
 			dino_speed = MAX_SPEED
 		
@@ -72,7 +70,6 @@ func _process(delta):
 
 func update_game(delta):
 	dino_speed = START_SPEED + score
-	print("dino:speed: ", dino_speed)
 	if dino_speed >= MAX_SPEED:
 		dino_speed = MAX_SPEED
 	
@@ -110,7 +107,7 @@ func generate_obstacles():
 			obstacle = obstacle_type.instantiate()
 			# var obstacle_height = obstacle.get_node("Sprite2D").texture.get_height()
 			# var obstacle_scale = obstacle.get_node("Sprite2D").scale
-			var obstacle_x = screen_size.x + score + 150 + (i * 50)
+			var obstacle_x = screen_size.x + score + 200 + (i * 50)
 			var obstacle_y = screen_size.y - ground_height  + 5 # screen_size.y - ground_height - (obstacle_height * obstacle_scale.y / 2) + 15
 			last_obstacle = obstacle
 			add_obstacle(obstacle, obstacle_x, obstacle_y)

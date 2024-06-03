@@ -11,10 +11,10 @@ func _physics_process(delta):
 			$AnimatedSprite2D.play("idle")
 		else:
 			$MoveCollision.disabled = false
-			if Input.is_action_pressed("ui_accept"):
+			if Input.is_action_pressed("jump"):
 				velocity.y = JUMP_SPEED
 				$JumpSound.play()
-			elif Input.is_action_pressed("ui_down"):
+			elif Input.is_action_pressed("sneak"):
 				$AnimatedSprite2D.play("sneak")
 				$MoveCollision.disabled = true
 			else:
