@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmyq1l1xsckei"]
+[gd_scene load_steps=7 format=3 uid="uid://dmyq1l1xsckei"]
 
+[ext_resource type="Script" path="res://scripts/alien.gd" id="1_f1nlg"]
 [ext_resource type="Texture2D" uid="uid://b6rw4ed7ecuue" path="res://assets/sprites/tilemap-characters_packed.png" id="1_lxhx8"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wal74"]
@@ -29,6 +30,7 @@ size = Vector2(20, 24)
 
 [node name="Alien" type="Area2D"]
 scale = Vector2(1.5, 1.5)
+script = ExtResource("1_f1nlg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)

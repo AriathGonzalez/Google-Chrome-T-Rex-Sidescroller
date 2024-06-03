@@ -15,7 +15,7 @@ var bug_scene = preload("res://scenes/bug.tscn")
 var mushroom_scene = preload("res://scenes/mushroom.tscn")
 var sign_scene = preload("res://scenes/sign.tscn")
 var stump_scene = preload("res://scenes/stump.tscn")
-var obstacle_types = [mushroom_scene, sign_scene, stump_scene]
+var obstacle_types = [alien_scene, mushroom_scene, sign_scene, stump_scene]
 var bug_spawn_heights = [175, 275]
 
 # Variables
