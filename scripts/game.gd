@@ -1,5 +1,12 @@
 extends Node
 
+# TODO: Fix bug where ground doesn't update correctly when playing fullscreen.
+# TODO: Change obstalces when max reached.
+# TODO: Optimze ground movement (so both don't move at the same time).
+# TODO: Add character select.
+# TODO: Make it so you press 'space' to restart.
+# TODO: Mess around with database.
+
 # Constants
 const DINO_START_POS := Vector2i(20, 350)
 const DINO_CAM_START_POS := Vector2i(256, 226)
@@ -7,7 +14,7 @@ const START_SPEED : float = 200.0
 const MAX_SPEED : int = 450
 const SPEED_MODIFIER : int = 5000
 const SCORE_MODIFIER : int = 10
-const MAX_DIFFICULTY : int = 3
+const MAX_DIFFICULTY : int = 2
 
 # Obstacles
 var alien_scene = preload("res://scenes/alien.tscn")
@@ -27,6 +34,7 @@ var score : float = 0.0
 var game_running : bool = false
 var last_obstacle
 var difficulty : int = 0
+var end_game_reached : bool = false
 
 func _ready():
 	screen_size = get_window().size
@@ -36,45 +44,23 @@ func _ready():
 	
 func _process(delta):
 	if game_running:
-		dino_speed = START_SPEED + (score * delta)
-		if dino_speed >= MAX_SPEED:
-			dino_speed = MAX_SPEED
-		
-		adjust_difficulty()
-
-		# Generate obstacles
-		generate_obstacles()
-		
-		# Move dino and camera
-		$Dino.position.x += dino_speed * delta
-		$DinoCamera.position.x += dino_speed * delta
-		
-		# Update score
-		score += dino_speed * delta
-		show_score()
-		
-		# Update ground position
-		# Camera has moved on too far and now the ground is about to go off
-		# the side of the screen.
-		if $DinoCamera.position.x - $Ground.position.x > screen_size.x * 1.5:
-			$Ground.position.x += screen_size.x
-
-		# Clean up obstacles
-		for obstacle in obstacles:
-			if obstacle.position.x < ($DinoCamera.position.x - screen_size.x):
-				remove_obstacle(obstacle)
+		update_game(delta)
 	else:
 		if Input.is_action_pressed("ui_accept"):
 			game_running = true
 			%HUD/StartLabel.visible = false
 
 func update_game(delta):
-	dino_speed = START_SPEED + score
+	dino_speed = START_SPEED + (score * delta)
 	if dino_speed >= MAX_SPEED:
 		dino_speed = MAX_SPEED
 	
 	adjust_difficulty()
-
+	
+	if not end_game_reached and difficulty == MAX_DIFFICULTY :
+		end_game_reached = true
+		end_game()
+		
 	# Generate obstacles
 	generate_obstacles()
 	
@@ -91,12 +77,13 @@ func update_game(delta):
 	# the side of the screen.
 	if $DinoCamera.position.x - $Ground.position.x > screen_size.x * 1.5:
 		$Ground.position.x += screen_size.x
-
+		$EndGround.position.x += screen_size.x
+		
 	# Clean up obstacles
 	for obstacle in obstacles:
 		if obstacle.position.x < ($DinoCamera.position.x - screen_size.x):
 			remove_obstacle(obstacle)
-				
+							
 func generate_obstacles():
 	# Generate ground obstacles
 	if obstacles.is_empty() or last_obstacle.position.x < score + randi_range(300, 500):
@@ -144,6 +131,7 @@ func check_high_score():
 		%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(int(GameManager.high_score))
 		
 func new_game():
+	remove_reverb()
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 	
@@ -152,6 +140,32 @@ func adjust_difficulty():
 	if difficulty >= MAX_DIFFICULTY:
 		difficulty = MAX_DIFFICULTY
 
+func end_game():
+	$EndBackground.visible = true
+	$Background.visible = false
+	$EndGround.visible = true
+	$Ground.visible = false
+	add_reverb()
+	
+func add_reverb():	
+	var bus_idx = AudioServer.get_bus_index("Music")
+	
+	var effect = AudioEffectReverb.new()
+	effect.set_dry(-5.0)
+	effect.set_wet(1.5)
+	effect.set_damping(0.4)
+	effect.set_room_size(1.0)
+	effect.set_spread(1.0)
+	effect.set_predelay_feedback(0.15)
+	
+	AudioServer.add_bus_effect(bus_idx, effect)
+	
+func remove_reverb():
+	var bus_idx = AudioServer.get_bus_index("Music")
+	
+	if AudioServer.get_bus_effect_count(bus_idx) >= 1:
+		AudioServer.remove_bus_effect(bus_idx, 0)
+	
 func game_over():
 	check_high_score()
 	get_tree().paused = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbfulykerode4"]
+[gd_scene load_steps=10 format=3 uid="uid://dbfulykerode4"]
 
 [ext_resource type="PackedScene" uid="uid://dppd25hpkf8mg" path="res://scenes/background.tscn" id="1_ck8gw"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_t0cu2"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://gjxon4cvvpyj" path="res://scenes/hud.tscn" id="5_43883"]
 [ext_resource type="PackedScene" uid="uid://cv0klgkcsencp" path="res://scenes/game_over.tscn" id="6_i1w0d"]
 [ext_resource type="AudioStream" uid="uid://44atemelm2ds" path="res://assets/sounds/game-over-arcade-6435.mp3" id="7_e8nqt"]
+[ext_resource type="PackedScene" uid="uid://dqm2i1flk825i" path="res://scenes/end_background.tscn" id="8_ew06l"]
+[ext_resource type="PackedScene" uid="uid://chj8n6fpnht2m" path="res://scenes/end_ground.tscn" id="9_xoku7"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_t0cu2")
@@ -34,3 +36,9 @@ process_mode = 2
 stream = ExtResource("7_e8nqt")
 volume_db = 1.874
 bus = &"SFX"
+
+[node name="EndBackground" parent="." instance=ExtResource("8_ew06l")]
+visible = false
+
+[node name="EndGround" parent="." instance=ExtResource("9_xoku7")]
+visible = false
