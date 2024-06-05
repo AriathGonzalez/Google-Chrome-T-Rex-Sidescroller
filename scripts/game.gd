@@ -1,9 +1,7 @@
 extends Node
 
 # TODO: Fix bug where ground doesn't update correctly when playing fullscreen.
-# TODO: Change obstalces when max reached.
 # TODO: Optimze ground movement (so both don't move at the same time).
-# TODO: Add character select.
 # TODO: Make it so you press 'space' to restart.
 # TODO: Mess around with database.
 
@@ -14,7 +12,7 @@ const START_SPEED : float = 200.0
 const MAX_SPEED : int = 450
 const SPEED_MODIFIER : int = 5000
 const SCORE_MODIFIER : int = 10
-const MAX_DIFFICULTY : int = 2
+const MAX_DIFFICULTY : int = 3
 
 # Obstacles
 var alien_scene = preload("res://scenes/alien.tscn")
@@ -174,8 +172,9 @@ func add_reverb():
 func remove_reverb():
 	var bus_idx = AudioServer.get_bus_index("Music")
 	
-	if AudioServer.get_bus_effect_count(bus_idx) >= 1:
-		AudioServer.remove_bus_effect(bus_idx, 0)
+	var bus_effect_count = AudioServer.get_bus_effect_count(bus_idx)
+	if bus_effect_count >= 1:
+		AudioServer.remove_bus_effect(bus_idx, bus_effect_count - 1)
 	
 func game_over():
 	check_high_score()
