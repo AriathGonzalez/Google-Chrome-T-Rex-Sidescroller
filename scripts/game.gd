@@ -23,6 +23,13 @@ var mushroom_scene = preload("res://scenes/mushroom.tscn")
 var sign_scene = preload("res://scenes/sign.tscn")
 var stump_scene = preload("res://scenes/stump.tscn")
 var obstacle_types = [alien_scene, mushroom_scene, sign_scene, stump_scene]
+
+# End Game Obstacles
+var blue_alien_scene = preload("res://scenes/blue_alien.tscn")
+var pumpkin_scene = preload("res://scenes/pumpkin.tscn")
+var fence_scene = preload("res://scenes/fence.tscn")
+var carrot_scene = preload("res://scenes/carrot.tscn")
+var end_obstacle_types = [blue_alien_scene, pumpkin_scene, fence_scene, carrot_scene]
 var bug_spawn_heights = [175, 275]
 
 # Variables
@@ -87,7 +94,11 @@ func update_game(delta):
 func generate_obstacles():
 	# Generate ground obstacles
 	if obstacles.is_empty() or last_obstacle.position.x < score + randi_range(300, 500):
-		var obstacle_type = obstacle_types[randi() % obstacle_types.size()]
+		var obstacle_type
+		if difficulty == MAX_DIFFICULTY:
+			obstacle_type = end_obstacle_types[randi() % end_obstacle_types.size()]
+		else:
+			obstacle_type = obstacle_types[randi() % obstacle_types.size()]
 		var obstacle
 		var max_obstacles = difficulty + 1
 		for i in range(randi() % max_obstacles + 1):

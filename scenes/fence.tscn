@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://xpci6wbmt5lu"]
+
+[ext_resource type="Texture2D" uid="uid://d4flfjv1hmyvf" path="res://assets/sprites/endgame_tilemap.png" id="1_bq3x1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01xya"]
+size = Vector2(18, 15)
+
+[node name="Fence" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.5, -19.25)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_bq3x1")
+region_enabled = true
+region_rect = Rect2(152, 41, 18, 15)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -18.75)
+scale = Vector2(2.5, 2.5)
+shape = SubResource("RectangleShape2D_01xya")

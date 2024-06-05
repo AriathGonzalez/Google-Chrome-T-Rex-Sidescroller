@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbwwr4l6bhqvb"]
+
+[ext_resource type="Texture2D" uid="uid://b6rw4ed7ecuue" path="res://assets/sprites/tilemap-characters_packed.png" id="1_bo4js"]
+[ext_resource type="Script" path="res://scripts/alien.gd" id="1_gxtag"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg1k1"]
+atlas = ExtResource("1_bo4js")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jo0qq"]
+atlas = ExtResource("1_bo4js")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bkfn5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg1k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jo0qq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e3y5m"]
+size = Vector2(20, 24)
+
+[node name="BlueAlien" type="Area2D"]
+script = ExtResource("1_gxtag")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(1.25, 1.25)
+sprite_frames = SubResource("SpriteFrames_bkfn5")
+animation = &"walk"
+autoplay = "walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+scale = Vector2(1.25, 1.25)
+shape = SubResource("RectangleShape2D_e3y5m")
