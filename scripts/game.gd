@@ -33,7 +33,7 @@ var bug_spawn_heights = [175, 275]
 # Variables
 var obstacles : Array = []
 var dino_speed : float = START_SPEED
-var screen_size : Vector2i
+var screen_size := Vector2i(640, 480)
 var ground_height : int
 var score : float = 0.0
 var game_running : bool = false
@@ -42,7 +42,7 @@ var difficulty : int = 0
 var end_game_reached : bool = false
 
 func _ready():
-	screen_size = get_window().size
+	print("size: ", screen_size)
 	ground_height = $Ground.get_node("Sprite2D").texture.get_height()
 	%HUD/HighScoreLabel.text = "HIGHSCORE: " + str(int(GameManager.high_score))
 	$GameOver/Button.pressed.connect(new_game)
